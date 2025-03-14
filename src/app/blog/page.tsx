@@ -1,25 +1,30 @@
-import { fetchPosts, Post } from "@/lib/graphql";
-import Link from "next/link";
+import { fetchPostBySlug, PostDetail } from "@/lib/graphql";
+import { Metadata } from "next";
 
-const BlogPage = async () => {
-    const posts: Post[] = await fetchPosts();
+type Params = Promise<{ slug: string }>;
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+    const { slug } = await params;
+    const post: PostDetail | null = await fetchPostBySlug(slug);
+
+    return {
+        title: post ? post.title : "Bài viết không tồn tại",
+        description: post ? post.content.slice(0, 150) : "Không tìm thấy bài viết",
+    };
+}
+
+export default async function BlogDetailPage({ params }: { params: Params }) {
+    const { slug } = await params;
+    const post: PostDetail | null = await fetchPostBySlug(slug);
+
+    if (!post) {
+        return <div className="container mt-4"><h2>Bài viết không tồn tại!</h2></div>;
+    }
 
     return (
-        <div>
-            <h2 className="text-primary">Danh sách bài viết</h2>
-            <ul className="list-group">
-                {posts.map((post: Post) => (
-                    <li key={post.id} className="list-group-item">
-                        <Link href={`/blog/${post.slug}`} className="text-decoration-none">
-                            {post.title}
-                        </Link>
-                        <p className="text-muted" dangerouslySetInnerHTML={{ __html: post.excerpt }}></p>
-                    </li>
-                ))}
-            </ul>
+        <div className="container mt-4">
+            <h1 className="text-primary">{post.title}</h1>
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
     );
-};
-
-export default BlogPage;
-
+}
