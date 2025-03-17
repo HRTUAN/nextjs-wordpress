@@ -1,21 +1,21 @@
-const WORDPRESS_GRAPHQL_ENDPOINT = "http://localhost:8081/Flatsome_test/graphql";
+const WORDPRESS_GRAPHQL_ENDPOINT = "https://webhalong.id.vn/graphql";
 
 export interface Post {
-    id: string;
-    title: string;
-    excerpt: string;
-    slug: string;
+  id: string;
+  title: string;
+  excerpt: string;
+  slug: string;
 }
 
 export interface PostDetail {
-    id: string;
-    title: string;
-    content: string;
-    slug: string;
+  id: string;
+  title: string;
+  content: string;
+  excerpt?: string;
+  slug: string;
 }
-
 export async function fetchPosts(): Promise<Post[]> {
-    const query = `
+  const query = `
     {
       posts {
         nodes {
@@ -28,19 +28,19 @@ export async function fetchPosts(): Promise<Post[]> {
     }
   `;
 
-    const response = await fetch(WORDPRESS_GRAPHQL_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query }),
-    });
+  const response = await fetch(WORDPRESS_GRAPHQL_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query }),
+  });
 
-    const json = await response.json();
-    return json.data.posts.nodes;
+  const json = await response.json();
+  return json.data.posts.nodes;
 }
 
 
 export async function fetchPostBySlug(slug: string): Promise<PostDetail | null> {
-    const query = `
+  const query = `
       query GetPostBySlug($slug: String!) {
         postBy(slug: $slug) {
           id
@@ -51,12 +51,12 @@ export async function fetchPostBySlug(slug: string): Promise<PostDetail | null> 
       }
     `;
 
-    const response = await fetch(WORDPRESS_GRAPHQL_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query, variables: { slug } }),
-    });
+  const response = await fetch(WORDPRESS_GRAPHQL_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query, variables: { slug } }),
+  });
 
-    const json = await response.json();
-    return json.data.postBy || null;
+  const json = await response.json();
+  return json.data.postBy || null;
 }

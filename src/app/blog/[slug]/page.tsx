@@ -1,24 +1,21 @@
 import { fetchPostBySlug, PostDetail } from "@/lib/graphql";
-import { notFound } from "next/navigation";
 
-interface Props {
-    params: { slug: string };
-}
+type Params = Promise<{ slug: string }>;
 
-const BlogDetailPage = async ({ params }: Props) => {
-    const post: PostDetail | null = await fetchPostBySlug(params.slug);
+const BlogDetailPage = async ({ params }: { params: Params }) => {
+    const { slug } = await params;
+    const post: PostDetail | null = await fetchPostBySlug(slug);
 
     if (!post) {
-        return notFound();
+        return <div className="container mt-4"><h2>Bài viết không tồn tại!</h2></div>;
     }
 
     return (
-        <div>
-            <h2 className="text-primary">{post.title}</h2>
-            <div className="text-muted" dangerouslySetInnerHTML={{ __html: post.content }}></div>
+        <div className="container mt-4">
+            <h1 className="text-primary">{post.title}</h1>
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
     );
 };
 
 export default BlogDetailPage;
-
