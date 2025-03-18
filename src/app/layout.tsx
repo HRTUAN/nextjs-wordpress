@@ -1,11 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles/global.css";
+import { Manrope } from "next/font/google";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+const manrope = Manrope({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
+
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang="vi">
-    <body>
+    <body className={manrope.className}>
       <Header />
       <main className="">{children}</main>
       <Footer />

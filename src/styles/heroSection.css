@@ -16,43 +16,39 @@
     width: 125%;
     max-width: 49.75rem;
     animation: rotate 20s linear infinite;
-    z-index: 1;
 }
 
-.bg_dark {
+.bg-dark {
+    --si-bg-opacity: 1;
     background-color: #0b0f19;
 }
 
-.bg_secondary {
-    background-color: rgba(255, 255, 255, .04);
+.bg-secondary {
+    background-color: rgba(253, 0, 0);
 }
 
-@keyframes fadeText {
+@keyframes fadeOpacity {
     0% {
-        opacity: 0;
-    }
-
-    50% {
         opacity: 1;
     }
 
     100% {
-        opacity: 0;
+        opacity: 0.5;
     }
 }
 
 .fade_1 {
-    animation: fadeText 8s ease-in-out infinite;
+    animation: fadeOpacity 1.5s ease-in-out forwards;
 }
 
 .fade_2 {
-    animation: fadeText 8s ease-in-out infinite 2.5s;
+    animation: fadeOpacity 1.5s ease-in-out forwards 1s;
 }
 
 .fade_3 {
-    animation: fadeText 8s ease-in-out infinite 1.25s;
+    animation: fadeOpacity 1.5s ease-in-out forwards 0.5s;
 }
 
 .fade_4 {
-    animation: fadeText 8s ease-in-out infinite 3.75s;
+    animation: fadeOpacity 1.5s ease-in-out forwards 1.5s;
 }
