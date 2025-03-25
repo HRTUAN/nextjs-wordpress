@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { fetchBlogPosts, BlogPost } from "@/lib/blogApi";
 import Button from "@/components/Button";
-import "../styles/blogSection.css";
+import "./styles/blogSection.css";
 
 
 const SectionBlog = () => {

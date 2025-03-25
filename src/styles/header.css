@@ -1,6 +1,7 @@
 .header {
     transition: transform 0.3s ease-in-out, 0.3s ease-in-out;
     z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .header.fixed {
@@ -22,4 +23,19 @@
     100% {
         transform: translateY(0);
     }
+}
+
+.navbar-collapse {
+    transition: height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+}
+
+.navbar-collapse.collapsing {
+    height: 0 !important;
+    opacity: 0;
+}
+
+.navbar-collapse.show {
+    height: auto !important;
+    opacity: 1;
 }

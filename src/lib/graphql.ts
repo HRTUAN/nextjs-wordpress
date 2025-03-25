@@ -5,6 +5,7 @@ export interface Post {
   title: string;
   excerpt: string;
   slug: string;
+  featuredImage: { node: { mediaItemUrl: string } } | null;
 }
 
 export interface PostDetail {
@@ -23,6 +24,11 @@ export async function fetchPosts(): Promise<Post[]> {
           title
           excerpt
           slug
+          featuredImage {
+            node{
+                mediaItemUrl
+            }
+          }
         }
       }
     }

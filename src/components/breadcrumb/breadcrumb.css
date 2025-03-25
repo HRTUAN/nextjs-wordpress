@@ -1,0 +1,30 @@
+.breadcrumb-item>a {
+    display: flex;
+    align-items: center;
+    color: #9397ad;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: var(--primary-color);
+}
+
+.breadcrumb-item+.breadcrumb-item {
+    padding-left: 0.625rem;
+    text-transform: capitalize;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    margin-top: 0.15em;
+    font-family: "boxicons";
+    font-size: 1.15em;
+    font-weight: normal;
+    line-height: 1;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    float: left;
+    padding-right: 0.625rem;
+    color: #9397ad;
+    content: var(--si-breadcrumb-divider, "\ea55");
+}

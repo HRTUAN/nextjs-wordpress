@@ -1,22 +1,26 @@
+
 import { fetchPosts, Post } from "@/lib/graphql";
 import Link from "next/link";
+import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
+import BlogFilter from "@/app/blog/sections/PageTitle";
+import BlogContent from "@/app/blog/sections/BlogContent";
+import Pagination from "@/app/blog/sections/Pagination";
 
 const BlogPage = async () => {
     const posts: Post[] = await fetchPosts();
 
     return (
-        <div>
-            <h2 className="text-primary">Danh sách bài viết</h2>
-            <ul className="list-group">
-                {posts.map((post: Post) => (
-                    <li key={post.id} className="list-group-item">
-                        <Link href={`/blog/${post.slug}`} className="text-decoration-none">
-                            {post.title}
-                        </Link>
-                        <p className="text-muted" dangerouslySetInnerHTML={{ __html: post.excerpt }}></p>
-                    </li>
-                ))}
-            </ul>
+        <div className="container">
+            <Breadcrumb
+                items={[
+                    { label: "Home", href: "/" },
+                    { label: "Blog", href: "/blog" },
+                ]}
+            />
+            <BlogFilter />
+            <BlogContent posts={posts} />
+            <Pagination />
+
         </div>
     );
 };

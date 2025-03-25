@@ -6,9 +6,14 @@ import { Navbar, Nav, Container, Button, NavDropdown } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "@/styles/header.css";
 
-export default function Menu() {
+interface MenuProps {
+    darkMode?: boolean;
+}
+
+export default function Menu({ darkMode = false }: MenuProps) {
     const [isSticky, setIsSticky] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
+
     useEffect(() => {
         const handleScroll = () => {
             setIsSticky(window.scrollY > 500);
@@ -18,43 +23,59 @@ export default function Menu() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const bgClass = darkMode ? "bg_dark" : "bg_white";
+    const textClass = darkMode ? "text-white" : "text-dark";
+
     return (
         <Navbar
             variant="dark"
             expand="lg"
-            className={`header bg_dark ${isSticky ? "fixed" : ""}`}
+            className={`header ${bgClass} ${isSticky ? "fixed" : ""}`}
         >
             <Container>
                 <Navbar.Brand>
-                    <Link href="/" passHref className="text-white text-decoration-none">My Blog</Link>
+                    <Link href="/" passHref className={`${textClass} text-decoration-none`}>My Blog</Link>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle aria-controls="basic-navbar-nav" className={`${textClass}`} />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link as="div"><Link href="/" passHref className="text-white text-decoration-none p-2 px-2 fw-medium">Trang chủ</Link></Nav.Link>
+                        <Nav.Link as="div">
+                            <Link href="/" passHref className={`${textClass} text-decoration-none p-2 px-2 fw-medium`}>
+                                Trang chủ
+                            </Link>
+                        </Nav.Link>
+
                         <NavDropdown
                             title="Dịch vụ"
                             show={showDropdown}
                             onMouseEnter={() => setShowDropdown(true)}
                             onMouseLeave={() => setShowDropdown(false)}
+                            className={`${textClass}`}
                         >
                             <NavDropdown.Item as="div">
-                                <Link href="/dich-vu/web" passHref className="text-dark text-decoration-none">Thiết kế Web</Link>
+                                <Link href="/thiet-ke-website" passHref className=" text-decoration-none">Thiết kế Web</Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item as="div">
-                                <Link href="/dich-vu/app" passHref className="text-dark text-decoration-none">Phát triển App</Link>
+                                <Link href="/phat-trien-app" passHref className=" text-decoration-none">Phát triển App</Link>
                             </NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link as="div"><Link href="/blog" passHref className="text-white text-decoration-none p-2 px-2 fw-medium">Blog</Link></Nav.Link>
-                        <Nav.Link as="div"><Link href="/lien-he" passHref className="text-white text-decoration-none p-2 px-2 fw-medium">Liên hệ</Link></Nav.Link>
+
+                        <Nav.Link as="div">
+                            <Link href="/blog" passHref className={`${textClass} text-decoration-none p-2 px-2 fw-medium`}>Blog</Link>
+                        </Nav.Link>
+
+                        <Nav.Link as="div">
+                            <Link href="/lien-he" passHref className={`${textClass} text-decoration-none p-2 px-2 fw-medium`}>Liên hệ</Link>
+                        </Nav.Link>
                     </Nav>
+
                     <div className="d-flex gap-2">
                         <Link href="/pricing" passHref>
                             <Button className="btn btn-secondary btn-sm fs-sm rounded">
                                 <i className="bi bi-tag-fill me-1"></i> Bảng giá
                             </Button>
                         </Link>
-                        <Link href="/contact" passHref>
+                        <Link href="/lien-he" passHref>
                             <Button className="btn btn-primary btn-sm fs-sm ms-2">
                                 <i className="bi bi-telephone-fill me-1"></i> Liên hệ
                             </Button>

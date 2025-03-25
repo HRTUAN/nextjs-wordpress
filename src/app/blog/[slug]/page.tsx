@@ -1,3 +1,4 @@
+import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 import { fetchPostBySlug, PostDetail } from "@/lib/graphql";
 
 type Params = Promise<{ slug: string }>;
@@ -11,7 +12,15 @@ const BlogDetailPage = async ({ params }: { params: Params }) => {
     }
 
     return (
+
         <div className="container mt-4">
+            <Breadcrumb
+                items={[
+                    { label: "Home", href: "/" },
+                    { label: "Blog", href: "/blog" },
+                    { label: post.title },
+                ]}
+            />
             <h1 className="text-primary">{post.title}</h1>
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
