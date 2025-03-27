@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Navbar, Nav, Container, Button, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "@/styles/header.css";
 
@@ -12,7 +14,6 @@ interface MenuProps {
 
 export default function Menu({ darkMode = false }: MenuProps) {
     const [isSticky, setIsSticky] = useState(false);
-    const [showDropdown, setShowDropdown] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -40,25 +41,22 @@ export default function Menu({ darkMode = false }: MenuProps) {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link as="div">
-                            <Link href="/" passHref className={`${textClass} text-decoration-none p-2 px-2 fw-medium`}>
-                                Trang chủ
-                            </Link>
+                            <Link href="/" passHref className={`${textClass} text-decoration-none p-2 px-2 fw-medium`}>Trang chủ</Link>
                         </Nav.Link>
 
-                        <NavDropdown
-                            title="Dịch vụ"
-                            show={showDropdown}
-                            onMouseEnter={() => setShowDropdown(true)}
-                            onMouseLeave={() => setShowDropdown(false)}
-                            className={`${textClass}`}
+                        <Tippy
+                            content={
+                                <div className="dropdown-menu show">
+                                    <Link href="/thiet-ke-website" passHref className="dropdown-item text-decoration-none">Thiết kế Web</Link>
+                                    <Link href="/phat-trien-app" passHref className="dropdown-item text-decoration-none">Phát triển App</Link>
+                                </div>
+                            }
+                            interactive
+                            placement="bottom-start"
+                            arrow={false} // Ẩn mũi tên
                         >
-                            <NavDropdown.Item as="div">
-                                <Link href="/thiet-ke-website" passHref className=" text-decoration-none">Thiết kế Web</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item as="div">
-                                <Link href="/phat-trien-app" passHref className=" text-decoration-none">Phát triển App</Link>
-                            </NavDropdown.Item>
-                        </NavDropdown>
+                            <div className={`${textClass} p-2 px-2 fw-medium cursor-pointer`}>Dịch vụ</div>
+                        </Tippy>
 
                         <Nav.Link as="div">
                             <Link href="/blog" passHref className={`${textClass} text-decoration-none p-2 px-2 fw-medium`}>Blog</Link>

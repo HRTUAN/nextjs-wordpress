@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "@tippyjs/react": "^4.2.6",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "boxicons": "^2.1.4",
@@ -16,7 +18,8 @@
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
-    "sass": "^1.85.1"
+    "sass": "^1.85.1",
+    "tippy.js": "^6.3.7"
   },
   "devDependencies": {
     "@types/node": "^20",

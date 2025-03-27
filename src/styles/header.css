@@ -15,6 +15,10 @@
     animation: navbar-show 0.4s ease-in-out;
 }
 
+.header.bg_white.fixed {
+    background: rgb(255, 255, 255);
+}
+
 @keyframes navbar-show {
     0% {
         transform: translateY(-100%);
