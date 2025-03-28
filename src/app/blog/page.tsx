@@ -4,13 +4,15 @@ import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 import BlogFilter from "@/app/blog/sections/PageTitle";
 import BlogContent from "@/app/blog/sections/BlogContent";
 import Pagination from "@/components/Pagination";
+import { Suspense } from "react";
 
 interface PageProps {
-    searchParams?: { page?: string };
+    searchParams?: Promise<{ page?: string }>;
 }
 
 const BlogPage = async ({ searchParams }: PageProps) => {
-    const currentPage = Number(searchParams?.page) || 1;
+    const resolvedSearchParams = searchParams ? await searchParams : {};
+    const currentPage = Number(resolvedSearchParams.page) || 1;
     const postsPerPage = 4;
 
     let afterCursor: string | null = null;
@@ -19,7 +21,7 @@ const BlogPage = async ({ searchParams }: PageProps) => {
         afterCursor = previousData.endCursor;
     }
 
-    const { posts, hasNextPage, endCursor, totalCount } = await fetchPaginatedPosts(postsPerPage, afterCursor);
+    const { posts, hasNextPage, totalCount } = await fetchPaginatedPosts(postsPerPage, afterCursor);
 
     return (
         <div className="container">
@@ -30,7 +32,11 @@ const BlogPage = async ({ searchParams }: PageProps) => {
                 ]}
             />
             <BlogFilter />
-            <BlogContent posts={posts} />
+
+            <Suspense fallback={<div>Đang tải bài viết...</div>}>
+                <BlogContent posts={posts} />
+            </Suspense>
+
             <Pagination currentPage={currentPage} hasNextPage={hasNextPage} totalCount={totalCount} postsPerPage={postsPerPage} />
         </div>
     );

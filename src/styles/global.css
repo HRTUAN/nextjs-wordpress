@@ -14,14 +14,6 @@ body {
     line-height: 1.3;
 }
 
-body .bg_dark p,
-body .bg_dark ul,
-body .bg_dark ol,
-body .bg_dark span:not(.badge),
-body .bg_dark dd {
-    color: rgba(255, 255, 255, 0.7);
-}
-
 .fs-sm {
     font-size: 0.875rem !important;
 }

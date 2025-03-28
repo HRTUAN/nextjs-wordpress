@@ -3,18 +3,19 @@ import Link from "next/link";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 
 interface PageDetailProps {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }
 
 const PageDetail = async ({ params }: PageDetailProps) => {
+    const resolvedParams = await params;
     const pages: Page[] = await fetchPages();
-    const currentPage = pages.find((p) => p.slug === params.slug);
+    const currentPage = pages.find((p) => p.slug === resolvedParams.slug);
 
     if (!currentPage) {
         return <div>Page not found</div>;
     }
 
-    const currentIndex = pages.findIndex((p) => p.slug === params.slug);
+    const currentIndex = pages.findIndex((p) => p.slug === resolvedParams.slug);
     const previousPage = pages[currentIndex + 1] || null;
     const nextPage = pages[currentIndex - 1] || null;
 
@@ -30,12 +31,10 @@ const PageDetail = async ({ params }: PageDetailProps) => {
             <h1 className="fw-bold">{currentPage.title}</h1>
             <div className="d-flex flex-md-row flex-column align-items-md-center justify-content-md-between">
                 <div className="d-flex align-items-center flex-wrap text-muted">
-                    <div className="fs-sm border-end pe-3 me-3 mb-2">{new Date(currentPage.date).toLocaleString()}</div>
+                    <div className="fs-sm border-end pe-3 me-3 mb-2">
+                        {new Date(currentPage.date).toLocaleString()}
+                    </div>
                     <div className="d-flex mb-2">
-                        <div className="d-none align-items-center me-3">
-                            <i className="bx bx-like fs-base me-1"></i>
-                            <span className="fs-sm">0</span>
-                        </div>
                         <div className="d-flex align-items-center me-3">
                             <i className="bx bx-comment fs-base me-1"></i>
                             <span className="fs-sm">0</span>
@@ -52,14 +51,18 @@ const PageDetail = async ({ params }: PageDetailProps) => {
                 {previousPage && (
                     <div className="col-lg-6">
                         <div className="mt-3">Bài Trước &lt;&lt;</div>
-                        <Link className="text-primary" href={`/page/${previousPage.slug}`}>{previousPage.title}</Link>
+                        <Link className="text-primary" href={`/page/${previousPage.slug}`}>
+                            {previousPage.title}
+                        </Link>
                     </div>
                 )}
 
                 {nextPage && (
                     <div className="col-lg-6 text-lg-end">
                         <div className="mt-3">&gt;&gt; Bài Kế Tiếp</div>
-                        <Link className="text-primary" href={`/page/${nextPage.slug}`}>{nextPage.title}</Link>
+                        <Link className="text-primary" href={`/page/${nextPage.slug}`}>
+                            {nextPage.title}
+                        </Link>
                     </div>
                 )}
             </div>

@@ -1,11 +1,14 @@
+"use client";
 import Link from "next/link";
 import { Post } from "@/lib/graphql";
 
 interface BlogContentProps {
-    posts: Post[];
+    posts: Post[] | null;
 }
 
 const BlogContent = ({ posts }: BlogContentProps) => {
+    if (!posts) return <div>Đang tải bài viết...</div>;
+
     return (
         <div className="row row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-md-4 gy-2">
             {posts.map((post) => (

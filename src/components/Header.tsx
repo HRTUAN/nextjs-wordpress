@@ -37,7 +37,11 @@ export default function Menu({ darkMode = false }: MenuProps) {
                 <Navbar.Brand>
                     <Link href="/" passHref className={`${textClass} text-decoration-none`}>My Blog</Link>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" className={`${textClass}`} />
+                <Navbar.Toggle
+                    aria-controls="basic-navbar-nav"
+                    className={`custom-toggle ${darkMode ? "toggle-dark" : "toggle-light"}`}
+                />
+
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link as="div">
@@ -45,17 +49,20 @@ export default function Menu({ darkMode = false }: MenuProps) {
                         </Nav.Link>
 
                         <Tippy
-                            content={
-                                <div className="dropdown-menu show">
+                            content={(
+                                <div className="sub-menu">
                                     <Link href="/thiet-ke-website" passHref className="dropdown-item text-decoration-none">Thiết kế Web</Link>
                                     <Link href="/phat-trien-app" passHref className="dropdown-item text-decoration-none">Phát triển App</Link>
                                 </div>
-                            }
+                            )}
                             interactive
                             placement="bottom-start"
-                            arrow={false} // Ẩn mũi tên
+                            arrow={false}
+                            delay={[0, 500]}
                         >
-                            <div className={`${textClass} p-2 px-2 fw-medium cursor-pointer`}>Dịch vụ</div>
+                            <Nav.Link as="div">
+                                <Link href="#" passHref className={`${textClass} text-decoration-none p-2 px-2 fw-medium`}>Dịch vụ</Link>
+                            </Nav.Link>
                         </Tippy>
 
                         <Nav.Link as="div">
