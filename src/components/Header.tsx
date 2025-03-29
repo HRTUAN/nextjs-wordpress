@@ -75,7 +75,7 @@ export default function Menu({ darkMode = false }: MenuProps) {
                     </Nav>
 
                     <div className="d-flex gap-2">
-                        <Link href="/pricing" passHref>
+                        <Link href="/page/bang-gia-thiet-ke-website" passHref>
                             <Button className="btn btn-secondary btn-sm fs-sm rounded">
                                 <i className="bi bi-tag-fill me-1"></i> Bảng giá
                             </Button>

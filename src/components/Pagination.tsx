@@ -15,7 +15,10 @@ const Pagination = ({ currentPage, hasNextPage, totalCount, postsPerPage }: Pagi
     const totalPages = Math.ceil(totalCount / postsPerPage);
 
     const goToPage = (page: number) => {
+        // Điều hướng đến URL mới
         router.push(`/blog?page=${page}`);
+        // Kích hoạt refresh để Suspense hoạt động
+        router.refresh();
     };
 
     // Tính toán các trang hiển thị (chỉ hiển thị trang hiện tại + 1 trang trước + 1 trang sau)

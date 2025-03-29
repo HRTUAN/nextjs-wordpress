@@ -1,27 +1,15 @@
-import { fetchPaginatedPosts, Post } from "@/lib/graphql";
-import Link from "next/link";
+import { Suspense } from "react";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 import BlogFilter from "@/app/blog/sections/PageTitle";
-import BlogContent from "@/app/blog/sections/BlogContent";
-import Pagination from "@/components/Pagination";
-import { Suspense } from "react";
+import PostsContainer from "@/app/blog/sections/PostsContainer";
 
 interface PageProps {
-    searchParams?: Promise<{ page?: string }>;
+    searchParams?: { page?: string };
 }
 
-const BlogPage = async ({ searchParams }: PageProps) => {
-    const resolvedSearchParams = searchParams ? await searchParams : {};
-    const currentPage = Number(resolvedSearchParams.page) || 1;
+const BlogPage = ({ searchParams }: PageProps) => {
+    const currentPage = Number(searchParams?.page) || 1;
     const postsPerPage = 4;
-
-    let afterCursor: string | null = null;
-    if (currentPage > 1) {
-        const previousData = await fetchPaginatedPosts((currentPage - 1) * postsPerPage);
-        afterCursor = previousData.endCursor;
-    }
-
-    const { posts, hasNextPage, totalCount } = await fetchPaginatedPosts(postsPerPage, afterCursor);
 
     return (
         <div className="container">
@@ -32,12 +20,11 @@ const BlogPage = async ({ searchParams }: PageProps) => {
                 ]}
             />
             <BlogFilter />
-
-            <Suspense fallback={<div>Đang tải bài viết...</div>}>
-                <BlogContent posts={posts} />
+            {/* Suspense chỉ hoạt động khi nó bọc một component chứa Promise chưa resolved (thường là một async component 
+            hoặc component có sử dụng await fetch data), không phải khi Promise đã được resolved trước khi render. */}
+            <Suspense fallback={<div className="py-5 text-center">Đang tải bài viết...</div>}>
+                <PostsContainer currentPage={currentPage} postsPerPage={postsPerPage} />
             </Suspense>
-
-            <Pagination currentPage={currentPage} hasNextPage={hasNextPage} totalCount={totalCount} postsPerPage={postsPerPage} />
         </div>
     );
 };
