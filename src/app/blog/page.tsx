@@ -4,11 +4,13 @@ import BlogFilter from "@/app/blog/sections/PageTitle";
 import PostsContainer from "@/app/blog/sections/PostsContainer";
 
 interface PageProps {
-    searchParams?: { page?: string };
+    searchParams?: Promise<Record<string, string | string[]>>;
 }
 
-const BlogPage = ({ searchParams }: PageProps) => {
-    const currentPage = Number(searchParams?.page) || 1;
+const BlogPage = async ({ searchParams }: PageProps) => {
+    const resolvedParams = await searchParams;
+    const pageParam = resolvedParams?.page;
+    const currentPage = Array.isArray(pageParam) ? Number(pageParam[0]) : Number(pageParam) || 1;
     const postsPerPage = 4;
 
     return (
@@ -30,3 +32,6 @@ const BlogPage = ({ searchParams }: PageProps) => {
 };
 
 export default BlogPage;
+
+
+
