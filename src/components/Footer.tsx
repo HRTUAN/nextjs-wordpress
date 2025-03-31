@@ -26,12 +26,12 @@ export default function Footer() {
                         <h6>Quy Định</h6>
                         <ul className="list-style: disc fs-sm">
                             {[
-                                { text: "Chính sách & quy định chung", url: "/chinh-sach-quy-dinh-chung/" },
-                                { text: "Chính sách bảo mật", url: "/chinh-sach-bao-mat-webhalong/" },
-                                { text: "Chính sách bảo hành", url: "/chinh-sach-bao-hanh-webhalong/" },
-                                { text: "Hình thức thanh toán", url: "/hinh-thuc-thanh-toan/" },
-                                { text: "Chính sách giao nhận - cài đặt", url: "/chinh-sach-giao-nhan-cai-dat/" },
-                                { text: "Quy trình làm việc", url: "/quy-trinh-lam-viec/" }
+                                { text: "Chính sách & quy định chung", url: "/page/chinh-sach-quy-dinh-chung/" },
+                                { text: "Chính sách bảo mật", url: "/page/chinh-sach-bao-mat-webhalong/" },
+                                { text: "Chính sách bảo hành", url: "/page/chinh-sach-bao-hanh-webhalong/" },
+                                { text: "Hình thức thanh toán", url: "/page//hinh-thuc-thanh-toan/" },
+                                { text: "Chính sách giao nhận - cài đặt", url: "/page/chinh-sach-giao-nhan-cai-dat/" },
+                                { text: "Quy trình làm việc", url: "/page/quy-trinh-lam-viec/" }
                             ].map((item, index) => (
                                 <li key={index}>
                                     <Link href={item.url} className="text-light text-decoration-none d-block py-1">
@@ -50,7 +50,7 @@ export default function Footer() {
                                 { text: "Bảng giá làm web", url: "/page/bang-gia-thiet-ke-website" },
                                 { text: "Mua source code", url: "/products" },
                                 { text: "Blog", url: "/blog" },
-                                { text: "Liên hệ", url: "/contact" }
+                                { text: "Liên hệ", url: "/lien-he" }
                             ].map((item, index) => (
                                 <li key={index}>
                                     <Link href={item.url} className="text-light text-decoration-none d-block py-1">
@@ -81,13 +81,13 @@ export default function Footer() {
                             </li>
                         </ul>
                         <div className="d-flex pt-3">
-                            <a href="" target="_blank" className="me-3">
+                            <a href="https://www.facebook.com/tuan.tran.468487/" target="_blank" className="me-3">
                                 <i className="bi bi-facebook fs-3 text-light"></i>
                             </a>
-                            <a href="" target="_blank" className="me-3">
+                            <a href="https://www.facebook.com/tuan.tran.468487/" target="_blank" className="me-3">
                                 <i className="bi bi-telegram fs-3 text-light"></i>
                             </a>
-                            <a href="" target="_blank">
+                            <a href="https://www.facebook.com/tuan.tran.468487/" target="_blank">
                                 <i className="bi bi-youtube fs-3 text-light"></i>
                             </a>
                         </div>

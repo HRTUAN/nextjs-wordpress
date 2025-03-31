@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import Tippy from "@tippyjs/react";
@@ -35,7 +36,9 @@ export default function Menu({ darkMode = false }: MenuProps) {
         >
             <Container>
                 <Navbar.Brand>
-                    <Link href="/" passHref className={`${textClass} text-decoration-none`}>My Blog</Link>
+                <Link href="/" passHref className={`${textClass} text-decoration-none`}>
+                    <Image src="/images/logoWeb.png" alt="My Blog" width={100} height={60} />
+                </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle
                     aria-controls="basic-navbar-nav"
@@ -52,7 +55,7 @@ export default function Menu({ darkMode = false }: MenuProps) {
                             content={(
                                 <div className="sub-menu">
                                     <Link href="/thiet-ke-website" passHref className="dropdown-item text-decoration-none">Thiết kế Web</Link>
-                                    <Link href="/phat-trien-app" passHref className="dropdown-item text-decoration-none">Phát triển App</Link>
+                                    <Link href="/thiet-ke-website" passHref className="dropdown-item text-decoration-none">Phát triển App</Link>
                                 </div>
                             )}
                             interactive

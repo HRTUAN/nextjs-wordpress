@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import styles from "./styles/quoteSection.module.css";
+import styles from "./styles/quoteSection.module.scss";
 
 const QuoteSection = () => {
     const [formData, setFormData] = useState({
