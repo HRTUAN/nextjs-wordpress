@@ -26,12 +26,12 @@ export default function Footer() {
                         <h6>Quy Định</h6>
                         <ul className="list-style: disc fs-sm">
                             {[
-                                { text: "Chính sách & quy định chung", url: "/" },
-                                { text: "Chính sách bảo mật", url: "/" },
-                                { text: "Chính sách bảo hành", url: "" },
-                                { text: "Hình thức thanh toán", url: "/" },
-                                { text: "Chính sách giao nhận - cài đặt", url: "/" },
-                                { text: "Quy trình làm việc", url: "/" }
+                                { text: "Chính sách & quy định chung", url: "/chinh-sach-quy-dinh-chung/" },
+                                { text: "Chính sách bảo mật", url: "/chinh-sach-bao-mat-webhalong/" },
+                                { text: "Chính sách bảo hành", url: "/chinh-sach-bao-hanh-webhalong/" },
+                                { text: "Hình thức thanh toán", url: "/hinh-thuc-thanh-toan/" },
+                                { text: "Chính sách giao nhận - cài đặt", url: "/chinh-sach-giao-nhan-cai-dat/" },
+                                { text: "Quy trình làm việc", url: "/quy-trinh-lam-viec/" }
                             ].map((item, index) => (
                                 <li key={index}>
                                     <Link href={item.url} className="text-light text-decoration-none d-block py-1">
