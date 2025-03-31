@@ -6,6 +6,7 @@ import HomeServicesSection from "@/app/thiet-ke-website/sections/HomeServices";
 import WhyChooseUs from "@/app/thiet-ke-website/sections/WhyChooseUs";
 import StatsSection from "@/app/thiet-ke-website/sections/Stats";
 import WorkProcess from "@/app/thiet-ke-website/sections/Workflow";
+import "../thiet-ke-website/styles/page-web-design.css";
 
 export default function PageWebDesign() {
     return (

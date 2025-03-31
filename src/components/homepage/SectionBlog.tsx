@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { fetchBlogPosts, BlogPost } from "@/lib/blogApi";
 import Button from "@/components/Button";
-import "./styles/blogSection.css";
+import styles from "./styles/blogSection.module.css";
 
 
 const SectionBlog = () => {
@@ -44,8 +44,11 @@ const SectionBlog = () => {
                                             {post.categories.nodes[0].name}
                                         </span>
                                     )}
-                                    <h5 className="card-title text-truncate-2 h5 mb-2 fw-bold clr_header">{post.title}</h5>
-                                    <p className="card-text text-truncate-2 fs-sm">
+                                    <h5 className={`card-title h5 mb-2 fw-bold clr_header ${styles["text-truncate-2"]}`}>
+                                        {post.title}
+                                    </h5>
+
+                                    <p className={`card-text ${styles["text-truncate-2"]} fs-sm`}>
                                         {post.excerpt.replace(/<\/?[^>]+(>|$)/g, "")}
                                     </p>
                                 </div>
@@ -54,7 +57,7 @@ const SectionBlog = () => {
                     </div>
                 ))}
             </div>
-            <div className="text-center p-3"> <Button href={`/blog`} text="Xem bài viết" className="mt-3" /></div>
+            <div className="text-center p-3"> <Button href={`/ blog`} text="Xem bài viết" className="mt-3" /></div>
 
         </section>
     );

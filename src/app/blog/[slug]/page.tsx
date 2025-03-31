@@ -1,5 +1,7 @@
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 import { fetchPostBySlug, PostDetail } from "@/lib/graphql";
+import style from "@/styles/htmlContent.module.scss";
+
 
 type Params = Promise<{ slug: string }>;
 
@@ -22,7 +24,7 @@ const BlogDetailPage = async ({ params }: { params: Params }) => {
                 ]}
             />
             <h1 className="text-primary">{post.title}</h1>
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            <div className={style.htmlContent} dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
     );
 };

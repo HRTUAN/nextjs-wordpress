@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "./styles/quoteSection.css";
+import styles from "./styles/quoteSection.module.css";
 
 const QuoteSection = () => {
     const [formData, setFormData] = useState({
@@ -16,9 +16,6 @@ const QuoteSection = () => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
-
-
-
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -51,28 +48,27 @@ const QuoteSection = () => {
                                 </a>
                             </li>
                         </ul>
-
                     </div>
                     <div className="col-lg-5 col-md-6 offset-xl-1">
                         <div className="card border-0 shadow-sm p-4">
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <label className="form-label">Tên</label>
-                                    <input type="text" name="name" placeholder="Họ tên" className="form-control" value={formData.name} onChange={handleChange} required />
+                                    <input type="text" name="name" placeholder="Họ tên" className={styles.formControl} value={formData.name} onChange={handleChange} required />
                                 </div>
                                 <div className="row">
                                     <div className="col-md-6 mb-3">
                                         <label className="form-label">Email</label>
-                                        <input type="email" name="email" placeholder="Email" className="form-control" value={formData.email} onChange={handleChange} required />
+                                        <input type="email" name="email" placeholder="Email" className={styles.formControl} value={formData.email} onChange={handleChange} required />
                                     </div>
                                     <div className="col-md-6 mb-3">
                                         <label className="form-label">Số điện thoại</label>
-                                        <input type="tel" name="phone" placeholder="Số điện thoại" className="form-control" value={formData.phone} onChange={handleChange} required />
+                                        <input type="tel" name="phone" placeholder="Số điện thoại" className={styles.formControl} value={formData.phone} onChange={handleChange} required />
                                     </div>
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Ngân sách</label>
-                                    <select name="budget" className="form-select" value={formData.budget} onChange={handleChange} required>
+                                    <select name="budget" className={styles.formSelect} value={formData.budget} onChange={handleChange} required>
                                         <option value="">Chọn ngân sách</option>
                                         <option value="5-10 triệu">5-10 triệu</option>
                                         <option value="10-20 triệu">10-20 triệu</option>
@@ -82,7 +78,7 @@ const QuoteSection = () => {
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Mô tả</label>
-                                    <textarea name="message" placeholder="Mô tả một chút về dự án của bạn" className="form-control" rows={3} value={formData.message} onChange={handleChange} required></textarea>
+                                    <textarea name="message" placeholder="Mô tả một chút về dự án của bạn" className={styles.formControl} rows={3} value={formData.message} onChange={handleChange} required></textarea>
                                 </div>
                                 <button type="submit" className="btn btn-primary w-100">Gửi yêu cầu</button>
                             </form>

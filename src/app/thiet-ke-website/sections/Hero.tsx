@@ -1,5 +1,5 @@
 import Link from "next/link";
-import "../styles/page-web-design.css";
+import style from "./styles/style.module.css";
 
 export default function HeroSection() {
     return (

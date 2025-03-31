@@ -1,5 +1,6 @@
 import styles from "@/styles/HeroSection.module.scss";
 import classNames from "classnames";
+import Link from "next/link";
 const HeroSection = () => {
     return (
         <section className={classNames(styles.bg_dark, "position-relative d-flex align-items-center min-vh-100 overflow-hidden")}>
@@ -12,7 +13,7 @@ const HeroSection = () => {
                         <p className="mb-4 pb-lg-3 pb-md-2 text-light">
                             Bạn có ý tưởng muốn phát triển? Webhalong giúp bạn xây dựng ý tưởng của bạn với lập trình Web, App.
                         </p>
-                        <a href="https://vinhweb.com/thiet-ke-website" className="btn btn-lg btn-primary">Làm Website</a>
+                        <Link href="/thiet-ke-website" className="btn btn-lg btn-primary">Làm Website</Link>
                     </div>
 
                     <div className="col-lg-6 offset-xl-1" style={{ height: "50vh" }}>
