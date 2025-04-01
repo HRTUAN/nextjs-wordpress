@@ -11,17 +11,44 @@ const QuoteSection = () => {
         budget: "",
         message: "",
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Form submitted:", formData);
-        setFormData({ name: "", email: "", phone: "", budget: "", message: "" });
+        setIsSubmitting(true);
+        setErrorMessage("");
+        setSuccessMessage("");
+
+        try {
+            const response = await fetch("/api/send-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                setSuccessMessage("Email sent successfully!");
+                setFormData({ name: "", email: "", phone: "", budget: "", message: "" });
+            } else {
+                const errorData = await response.json();
+                setErrorMessage(errorData.message || "Error sending email");
+            }
+        } catch (error) {
+            setErrorMessage("An unexpected error occurred. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
+
 
     return (
         <section className="container mt-5" id="quote">
@@ -38,7 +65,7 @@ const QuoteSection = () => {
                                 </a>
                             </li>
                             <li>
-                                <a href="mailto:vinhnguyenhubt@gmail.com" className="d-flex align-items-center mb-2">
+                                <a href="mailto:tuantq.utc@gmail.com" className="d-flex align-items-center mb-2">
                                     <i className="bi bi-envelope me-2 text-primary"></i> tuantq.utc@gmail.com
                                 </a>
                             </li>
@@ -52,6 +79,8 @@ const QuoteSection = () => {
                     <div className="col-lg-5 col-md-6 offset-xl-1">
                         <div className="card border-0 shadow-sm p-4">
                             <form onSubmit={handleSubmit}>
+                                {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+                                {successMessage && <div className="alert alert-success">{successMessage}</div>}
                                 <div className="mb-3">
                                     <label className="form-label">Tên</label>
                                     <input type="text" name="name" placeholder="Họ tên" className={styles.formControl} value={formData.name} onChange={handleChange} required />
@@ -80,7 +109,9 @@ const QuoteSection = () => {
                                     <label className="form-label">Mô tả</label>
                                     <textarea name="message" placeholder="Mô tả một chút về dự án của bạn" className={styles.formControl} rows={3} value={formData.message} onChange={handleChange} required></textarea>
                                 </div>
-                                <button type="submit" className="btn btn-primary w-100">Gửi yêu cầu</button>
+                                <button type="submit" className="btn btn-primary w-100" disabled={isSubmitting}>
+                                    {isSubmitting ? "Đang gửi..." : "Gửi yêu cầu"}
+                                </button>
                             </form>
                         </div>
                     </div>

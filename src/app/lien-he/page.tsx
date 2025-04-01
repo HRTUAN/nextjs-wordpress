@@ -1,9 +1,6 @@
 "use client";
 
-import HeroSection from "@/app/thiet-ke-website/sections/Hero";
-
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
-
 import { useState, FormEvent } from "react";
 import Link from "next/link";
 
@@ -14,15 +11,47 @@ export default function ContactPage() {
         phone: "",
         text: "",
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        console.log("Form Data:", formData);
-        alert("Thông tin đã được gửi!");
+        setIsSubmitting(true);
+        setErrorMessage("");
+        setSuccessMessage("");
+
+        try {
+            const response = await fetch("/api/send-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    message: formData.text,
+                    budget: "N/A", // Default value for budget
+                }),
+            });
+
+            if (response.ok) {
+                setSuccessMessage("Thông tin đã được gửi thành công!");
+                setFormData({ name: "", email: "", phone: "", text: "" });
+            } else {
+                const errorData = await response.json();
+                setErrorMessage(errorData.message || "Đã xảy ra lỗi khi gửi thông tin.");
+            }
+        } catch (error) {
+            setErrorMessage("Đã xảy ra lỗi không mong muốn. Vui lòng thử lại.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -57,6 +86,8 @@ export default function ContactPage() {
 
                     <div className="col-lg-6 offset-xl-1 offset-xxl-2 pt-3 pt-md-4 pt-lg-3 mt-3">
                         <form id="contactForm" onSubmit={handleSubmit}>
+                            {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+                            {successMessage && <div className="alert alert-success">{successMessage}</div>}
                             <div className="row g-4">
                                 <div className="col-12">
                                     <label htmlFor="name" className="form-label fs-base">
@@ -122,8 +153,12 @@ export default function ContactPage() {
                                 </div>
 
                                 <div className="col-12">
-                                    <button type="submit" className="btn btn-lg btn-primary w-100 w-sm-auto">
-                                        Gửi
+                                    <button
+                                        type="submit"
+                                        className="btn btn-lg btn-primary w-100 w-sm-auto"
+                                        disabled={isSubmitting}
+                                    >
+                                        {isSubmitting ? "Đang gửi..." : "Gửi"}
                                     </button>
                                 </div>
                             </div>
