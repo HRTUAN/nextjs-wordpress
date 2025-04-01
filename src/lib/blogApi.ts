@@ -1,17 +1,17 @@
-const WORDPRESS_GRAPHQL_ENDPOINT = "https://webhalong.id.vn/graphql";
+const WORDPRESS_GRAPHQL_ENDPOINT = "https://blog.webhalong.id.vn/graphql";
 
 export interface BlogPost {
-    id: string;
-    title: string;
-    featuredImage: { node: { mediaItemUrl: string } } | null;
-    categories: { nodes: { name: string }[] };
-    excerpt: string;
-    slug: string;
+  id: string;
+  title: string;
+  featuredImage: { node: { mediaItemUrl: string } } | null;
+  categories: { nodes: { name: string }[] };
+  excerpt: string;
+  slug: string;
 }
 
 
 export async function fetchBlogPosts(): Promise<BlogPost[]> {
-    const query = `
+  const query = `
     {
       posts(first: 6) {
         nodes {
@@ -34,12 +34,12 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
     }
   `;
 
-    const response = await fetch(WORDPRESS_GRAPHQL_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query }),
-    });
+  const response = await fetch(WORDPRESS_GRAPHQL_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query }),
+  });
 
-    const json = await response.json();
-    return json.data.posts.nodes;
+  const json = await response.json();
+  return json.data.posts.nodes;
 }

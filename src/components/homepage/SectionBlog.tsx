@@ -57,7 +57,7 @@ const SectionBlog = () => {
                     </div>
                 ))}
             </div>
-            <div className="text-center p-3"> <Button href={`/ blog`} text="Xem bài viết" className="mt-3" /></div>
+            <div className="text-center p-3"> <Button href={`/blog`} text="Xem bài viết" className="mt-3" /></div>
 
         </section>
     );

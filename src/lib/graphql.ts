@@ -1,4 +1,4 @@
-const WORDPRESS_GRAPHQL_ENDPOINT = "https://webhalong.id.vn/graphql";
+const WORDPRESS_GRAPHQL_ENDPOINT = "https://blog.webhalong.id.vn/graphql";
 
 export interface Post {
   id: string;
