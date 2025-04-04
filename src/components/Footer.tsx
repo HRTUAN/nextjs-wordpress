@@ -9,8 +9,8 @@ export default function Footer() {
                 <Row className="pb-5">
                     <Col xl={5} className="mb-4 mb-lg-5">
                         <img
-                            src="https://vinhweb.com/assets/frontend/img/vinhweb-light.png"
-                            width={100}
+                            src="/images/logoWeb-dark.png"
+                            width={200}
                             alt="Webhalong"
                             className="mb-3"
                         />

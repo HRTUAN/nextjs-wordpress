@@ -4,3 +4,13 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+.card-img-top {
+    height: 200px;
+}
+
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 165px;
+    }
+}

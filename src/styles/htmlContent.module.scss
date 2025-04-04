@@ -17,29 +17,13 @@
         color: #333;
     }
 
-    .img {
+    img {
         max-width: 100%;
         height: auto;
         display: block;
-        margin: 10px auto;
         border-radius: 8px;
     }
 
-    .alignleft {
-        float: left;
-        margin: 0 15px 10px 0;
-    }
-
-    .alignright {
-        float: right;
-        margin: 0 0 10px 15px;
-    }
-
-    .aligncenter {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
 
     table {
         width: 100%;

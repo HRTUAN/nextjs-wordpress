@@ -33,7 +33,7 @@ const SectionBlog = () => {
                                 {post.featuredImage && (
                                     <img
                                         src={post.featuredImage.node.mediaItemUrl}
-                                        className="card-img-top rounded-3 h-100"
+                                        className={`${styles["card-img-top"]} rounded-3`}
                                         alt={post.title}
                                         style={{ objectFit: "cover" }}
                                     />

@@ -14,7 +14,7 @@ export default function HomeServicesSection() {
 					</h2>
 					<div style={{ maxWidth: "750px" }} className="mx-auto fs-lg">
 						<p>
-							Với những giải pháp công nghệ tốt nhất Vinh Web cung cấp tất cả
+							Với những giải pháp công nghệ tốt nhất Webhalong cung cấp tất cả
 							dịch vụ thiết kế website cần thiết để hỗ trợ xây dựng website -
 							thương hiệu online và đột phá doanh thu.
 						</p>
@@ -53,7 +53,7 @@ const services = [
 		id: 1,
 		title: "Thiết kế website bán hàng",
 		description:
-			"Trải nghiệm sự khác biệt với công nghệ Thiết kế website bán hàng chuẩn SEO Google của Vinh Web.",
+			"Trải nghiệm sự khác biệt với công nghệ Thiết kế website bán hàng chuẩn SEO Google của Webhalong.",
 		image: "/images/website-ban-hang.png",
 		link: "",
 		alt: "thiết kế website bán hàng",
@@ -62,7 +62,7 @@ const services = [
 		id: 2,
 		title: "Thiết kế website doanh nghiệp",
 		description:
-			"Hãy sử dụng dịch vụ Thiết kế web doanh nghiệp chuẩn SEO của Vinh Web để đưa thương hiệu công ty bạn lên Internet ngay hôm nay.",
+			"Hãy sử dụng dịch vụ Thiết kế web doanh nghiệp chuẩn SEO của Webhalong để đưa thương hiệu công ty bạn lên Internet ngay hôm nay.",
 		image: "/images/website-doanh-nghiep.png",
 		link: "",
 		alt: "thiết kế website doanh nghiệp",

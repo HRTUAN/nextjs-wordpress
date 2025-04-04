@@ -23,7 +23,7 @@ const BlogDetailPage = async ({ params }: { params: Params }) => {
                     { label: post.title },
                 ]}
             />
-            <h1 className="text-primary">{post.title}</h1>
+            <h1 className="text-primary mb-5">{post.title}</h1>
             <div className={style.htmlContent} dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
     );
