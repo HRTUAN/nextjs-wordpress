@@ -11,7 +11,7 @@ const BlogPage = async ({ searchParams }: PageProps) => {
     const resolvedParams = await searchParams;
     const pageParam = resolvedParams?.page;
     const currentPage = Array.isArray(pageParam) ? Number(pageParam[0]) : Number(pageParam) || 1;
-    const postsPerPage = 4;
+    const postsPerPage = 9;
 
     return (
         <div className="container">

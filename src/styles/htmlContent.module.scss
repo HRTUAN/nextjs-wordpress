@@ -24,6 +24,12 @@
         border-radius: 8px;
     }
 
+    figcaption {
+        font-size: 0.9rem;
+        color: #666;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
 
     table {
         width: 100%;
@@ -65,6 +71,10 @@
             display: block;
             overflow-x: auto;
             white-space: nowrap;
+        }
+
+        figure {
+            width: 90vw !important;
         }
 
     }

@@ -13,7 +13,7 @@ export interface BlogPost {
 export async function fetchBlogPosts(): Promise<BlogPost[]> {
   const query = `
     {
-      posts(first: 6) {
+      posts(first: 8) {
         nodes {
           id
           title
