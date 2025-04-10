@@ -3,12 +3,18 @@ const WORDPRESS_GRAPHQL_ENDPOINT = "https://blog.webhalong.id.vn/graphql";
 export interface BlogPost {
   id: string;
   title: string;
-  featuredImage: { node: { mediaItemUrl: string } } | null;
-  categories: { nodes: { name: string }[] };
   excerpt: string;
   slug: string;
+  featuredImage: { node: { mediaItemUrl: string } } | null;
+  categories: { nodes: { name: string }[] };
+  seo?: {
+    title: string;
+    metaDesc: string;
+    opengraphImage: {
+      mediaItemUrl: string;
+    } | null;
+  };
 }
-
 
 export async function fetchBlogPosts(): Promise<BlogPost[]> {
   const query = `
@@ -20,13 +26,20 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
           excerpt
           slug
           featuredImage {
-            node{
-                mediaItemUrl
+            node {
+              mediaItemUrl
             }
           }
           categories {
             nodes {
               name
+            }
+          }
+          seo {
+            title
+            metaDesc
+            opengraphImage {
+              mediaItemUrl
             }
           }
         }

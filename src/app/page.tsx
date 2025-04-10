@@ -43,8 +43,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "TsBh7od7uSkCmhS7mdAw6Mh-rOT-v9WOvBdspyZixaI",
+  },
 };
-
+<meta name="google-site-verification" content="TsBh7od7uSkCmhS7mdAw6Mh-rOT-v9WOvBdspyZixaI" />
 export default function HomePage() {
   return (
     <div>
