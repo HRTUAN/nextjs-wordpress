@@ -129,7 +129,7 @@ export async function fetchPostBySlug(slug: string): Promise<PostDetail | null> 
 export async function fetchPages(): Promise<Page[]> {
   const query = `
     {
-      pages {
+      pages(first: 100) {
         nodes {
           id
           title
