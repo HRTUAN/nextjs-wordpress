@@ -1,5 +1,7 @@
 const WORDPRESS_GRAPHQL_ENDPOINT = "https://blog.webhalong.id.vn/graphql";
 
+const REVALIDATE: false | number = false;
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -51,6 +53,7 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ query }),
+    next: { revalidate: REVALIDATE },
   });
 
   const json = await response.json();
