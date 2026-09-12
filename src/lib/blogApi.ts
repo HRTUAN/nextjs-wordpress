@@ -57,8 +57,6 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
 
   const json = await response.json();
 
-  console.log("GraphQL response:", json);
-
   if (!response.ok) {
     throw new Error(
       `WordPress GraphQL HTTP error: ${response.status}`
@@ -66,8 +64,6 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
   }
 
   if (json.errors) {
-    console.error("GraphQL errors:", json.errors);
-
     throw new Error(
       json.errors
         .map((error: { message: string }) => error.message)
