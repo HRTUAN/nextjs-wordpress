@@ -67,8 +67,11 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
 
   if (json.errors) {
     console.error("GraphQL errors:", json.errors);
+
     throw new Error(
-      json.errors.map((error) => error.message).join("\n")
+      json.errors
+        .map((error: { message: string }) => error.message)
+        .join("\n")
     );
   }
 
